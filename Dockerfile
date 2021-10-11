@@ -26,12 +26,12 @@ ENV HOME=/home/jenkins \
 USER root
 
 COPY assets/bin/* /usr/local/bin/
-RUN pushd /usr/local/bin/ && \
+RUN cd /usr/local/bin/ && \
       wget https://raw.githubusercontent.com/openshift/jenkins/openshift-3.11/slave-base/contrib/bin/run-jnlp-client && \
       wget https://raw.githubusercontent.com/openshift/jenkins/openshift-3.11/slave-base/contrib/bin/configure-agent && \
       wget https://raw.githubusercontent.com/openshift/jenkins/openshift-3.11/slave-base/contrib/bin/configure-slave && \
       wget https://raw.githubusercontent.com/openshift/jenkins/openshift-3.11/slave-base/contrib/bin/generate_container_user && \
-      popd
+      cd -
 RUN chmod +rx /usr/local/bin/{run-jnlp-client,configure-slave,configure-agent,generate_container_user}
 
 # install and initialise the jenkins-slave components
