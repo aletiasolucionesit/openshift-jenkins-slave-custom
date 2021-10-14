@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM aletiasoluciones/dotnet-5.0
 
 ARG BUILD=base
 ARG VERSION=1

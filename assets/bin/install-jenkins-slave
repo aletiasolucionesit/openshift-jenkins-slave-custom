@@ -9,8 +9,8 @@ set -xe
 INSTALL_SCRIPT_PREFIX=${INSTALL_SCRIPT_PATH:-/usr/local/bin}/`basename "$0"`
 JENKINS_USER_ID=1001
 JENKINS_HOME=${JENKINS_HOME:-/home/jenkins}
-JAVA_PACKAGES=${JAVA_PACKAGES:-"java-1.8.0-openjdk-headless java-1.8.0-openjdk-headless.i686"}
-INSTALL_PKGS="which git tar wget hostname sysvinit-tools util-linux bsdtar
+JAVA_PACKAGES=${JAVA_PACKAGES:-"java-1.8.0-openjdk"}
+INSTALL_PKGS="which git tar wget hostname util-linux bsdtar
 socat ethtool device-mapper iptables tree findutils nmap-ncat e2fsprogs
 xfsprogs lsof bc gettext lsof rsync unzip zip bzip2
 "
@@ -81,22 +81,22 @@ chmod -R g+w ${JENKINS_HOME}
 chmod 664 /etc/passwd
 chmod -R 775 /etc/alternatives \
   /var/lib/{alternatives,origin} \
-  /usr/lib/{jvm,jvm-exports} \
+  /usr/lib/jvm \
   /usr/bin \
   /usr/share/man/man1
 
 FILENAMES="java jjs keytool orbd pack200 policytool rmid rmiregistry servertool tnameserv unpack200"
-for f in ${FILENAMES}; do
-  unlink /usr/bin/${f}
-  unlink /usr/share/man/man1/${f}.1.gz
-done
+#for f in ${FILENAMES}; do
+  #unlink /usr/bin/${f}
+  #unlink /usr/share/man/man1/${f}.1.gz
+#done
 
-unlink /usr/lib/jvm-exports/jre
+#unlink /usr/lib/jvm-exports/jre
 
 # run any build specific actions
-for f in extras ${JENKINS_SLAVE_BUILD} ${JENKINS_SLAVE_BUILD}-${JENKINS_SLAVE_VERSION}; do
-  SCRIPT=${INSTALL_SCRIPT_PREFIX}-${f}
-  if [ -f ${SCRIPT} ]; then
-    ${SCRIPT}
-  fi
-done
+#for f in extras ${JENKINS_SLAVE_BUILD} ${JENKINS_SLAVE_BUILD}-${JENKINS_SLAVE_VERSION}; do
+#  SCRIPT=${INSTALL_SCRIPT_PREFIX}-${f}
+#  if [ -f ${SCRIPT} ]; then
+#    ${SCRIPT}
+#  fi
+#done
