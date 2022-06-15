@@ -1,6 +1,6 @@
-FROM aletiasoluciones/dotnet-5.0
+FROM openshift/fleet-s2i
 
-ARG BUILD=base
+ARG BUILD=angular
 ARG VERSION=1
 ARG RELEASE=1
 ARG EXTRA_PACKAGES=""
