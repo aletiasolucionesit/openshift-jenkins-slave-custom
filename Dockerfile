@@ -24,6 +24,7 @@ ENV HOME=/home/jenkins \
   PACKAGE_MANAGER_INSTALL_EXTRA_ARGS="${PACKAGE_MANAGER_INSTALL_EXTRA_ARGS}"
 
 USER root
+RUN npm install -g @angular/cli
 
 COPY assets/bin/* /usr/local/bin/
 RUN cd /usr/local/bin/ && \
